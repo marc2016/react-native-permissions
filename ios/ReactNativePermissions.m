@@ -26,21 +26,10 @@
   #import "RCTConvert.h"
 #endif
 
-#if __has_include(<React/RCTEventDispatcher.h>)
-  #import <React/RCTEventDispatcher.h>
-#elif __has_include("React/RCTEventDispatcher.h")
-  #import "React/RCTEventDispatcher.h"
-#else
-  #import "RCTEventDispatcher.h"
-#endif
-
 #import "RNPAudioVideo.h"
 
 
 @interface ReactNativePermissions()
-@property (strong, nonatomic) RNPLocation *locationMgr;
-@property (strong, nonatomic) RNPNotification *notificationMgr;
-@property (strong, nonatomic) RNPBluetooth *bluetoothMgr;
 @end
 
 @implementation ReactNativePermissions
@@ -126,52 +115,6 @@ RCT_REMAP_METHOD(requestPermission, permissionType:(RNPType)type json:(id)json r
 
 
 }
-
-- (void) requestLocation:(id)json resolve:(RCTPromiseResolveBlock)resolve
-{
-    if (self.locationMgr == nil) {
-        self.locationMgr = [[RNPLocation alloc] init];
-    }
-
-    NSString *type = [RCTConvert NSString:json];
-
-    [self.locationMgr request:type completionHandler:resolve];
-}
-
-- (void) requestNotification:(id)json resolve:(RCTPromiseResolveBlock)resolve
-{
-    NSArray *typeStrings = [RCTConvert NSArray:json];
-
-    UIUserNotificationType types;
-    if ([typeStrings containsObject:@"alert"])
-        types = types | UIUserNotificationTypeAlert;
-
-    if ([typeStrings containsObject:@"badge"])
-        types = types | UIUserNotificationTypeBadge;
-
-    if ([typeStrings containsObject:@"sound"])
-        types = types | UIUserNotificationTypeSound;
-
-
-    if (self.notificationMgr == nil) {
-        self.notificationMgr = [[RNPNotification alloc] init];
-    }
-
-    [self.notificationMgr request:types completionHandler:resolve];
-
-}
-
-
-- (void) requestBluetooth:(RCTPromiseResolveBlock)resolve
-{
-    if (self.bluetoothMgr == nil) {
-        self.bluetoothMgr = [[RNPBluetooth alloc] init];
-    }
-
-    [self.bluetoothMgr request:resolve];
-}
-
-
 
 
 @end
