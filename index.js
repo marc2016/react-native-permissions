@@ -22,32 +22,10 @@ const ASYNC_STORAGE_KEY = '@RNPermissions:didAskPermission:';
 
 const PERMISSIONS = Platform.select({
   ios: {
-    backgroundRefresh: 'backgroundRefresh',
-    bluetooth: 'bluetooth',
     camera: 'camera',
-    contacts: 'contacts',
-    event: 'event',
-    location: 'location',
-    mediaLibrary: 'mediaLibrary',
-    microphone: 'microphone',
-    motion: 'motion',
-    notification: 'notification',
-    photo: 'photo',
-    reminder: 'reminder',
-    speechRecognition: 'speechRecognition',
   },
   android: {
-    callPhone: PermissionsAndroid.PERMISSIONS.CALL_PHONE,
     camera: PermissionsAndroid.PERMISSIONS.CAMERA,
-    coarseLocation: PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION,
-    contacts: PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
-    event: PermissionsAndroid.PERMISSIONS.READ_CALENDAR,
-    location: PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-    microphone: PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
-    photo: PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-    readSms: PermissionsAndroid.PERMISSIONS.READ_SMS,
-    receiveSms: PermissionsAndroid.PERMISSIONS.RECEIVE_SMS,
-    sendSms: PermissionsAndroid.PERMISSIONS.SEND_SMS,
     storage: PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
   },
 });
